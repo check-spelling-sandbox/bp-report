@@ -37,7 +37,7 @@
       table.string('description').notNullable()
     })
   }
-  const retreiveConversationEvents = async () => {
+  const retrieveConversationEvents = async () => {
     const { threadId, id } = event
     const results = await bp
       .database('events')
@@ -47,7 +47,7 @@
     return results.map(a => bp.database.json.get(a.event)).slice(0, -2)
   }
 
-  const retreiveLogs = async startAt => {
+  const retrieveLogs = async startAt => {
     return bp
       .database('srv_logs')
       .select('*')
@@ -70,7 +70,7 @@
 
     await createTableIfNeeded()
 
-    const events = await retreiveConversationEvents()
+    const events = await retrieveConversationEvents()
 
     if (!events[0]) {
       return bp.events.replyToEvent(event, [
@@ -81,7 +81,7 @@
       ])
     }
     const startAt = events[0].createdOn
-    const logs = await retreiveLogs(startAt)
+    const logs = await retrieveLogs(startAt)
     
 
     await storeInTable({ events, logs, uid, description: event.payload.text })

@@ -3,7 +3,7 @@
   const ROUTER_NAME = 'debug'
   const ENDPOINT_NAME = 'query.json'
 
-  const retreiveConversationEvents = id => {
+  const retrieveConversationEvents = id => {
     return bp
       .database(DEBUG_TABLE_NAME)
       .select('*')
@@ -38,7 +38,7 @@
 
   router.get('/' + ENDPOINT_NAME, async (req, res) => {
     const { id } = req.query
-    const result = await retreiveConversationEvents(id)
+    const result = await retrieveConversationEvents(id)
     if (result) {
       try {
         const mergedLogsAndEvents = mergeLogsAndEvents(result)
