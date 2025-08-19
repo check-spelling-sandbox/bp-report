@@ -57,7 +57,7 @@ const linksList = [
     link: 'https://quasar.dev'
   },
   {
-    title: 'Github',
+    title: 'GitHub',
     caption: 'github.com/quasarframework',
     icon: 'code',
     link: 'https://github.com/quasarframework'
